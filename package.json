@@ -1,0 +1,23 @@
+{
+  "name": "ps118",
+  "version": "1.0.0",
+  "description": "In Washington DC, Childcare is very expensive. As the city develops, many of the city’s residents are being priced out of the city because they cannot afford these two things. The city provides developers Child Developmentcenter data via their Open Data Initiative.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jimboneely/projectTwo.git"
+  },
+  "author": "James Joyce Tony",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jimboneely/projectTwo/issues"
+  },
+  "homepage": "https://github.com/jimboneely/projectTwo#readme",
+  "dependencies": {
+    "express": "^4.16.2"
+  }
+}
