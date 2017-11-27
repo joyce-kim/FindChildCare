@@ -1,9 +1,17 @@
-var request = require("request");
+var express = require("express");
+var bodyParser = require("body-parser");
 
-request("https://maps2.dcgis.dc.gov/dcgis/rest/services/DCGIS_DATA/Public_Service_WebMercator/MapServer/33/query?where=1%3D1&outFields=*&outSR=4326&f=json", function(error, response, body) {
+var app = express();
+var PORT = process.env.PORT || 8080;
 
-  if (!error && response.statusCode === 200) {
-  	console.log(JSON.parse(body).features);
-    // console.log("The movie's rating is: " + JSON.parse(body).imdbRating);
-  }
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+app.use(express.static('public'));
+
+require("./routes/htmlRoutes")(app);
+require("./routes/apiRoutes")(app);
+
+app.listen(PORT, function() {
+  console.log("App listening on PORT: " + PORT);
 });
