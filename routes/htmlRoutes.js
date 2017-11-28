@@ -1,4 +1,5 @@
 var path = require("path");
+var db = require("../models");
 
 module.exports = function(app) {
 
@@ -7,7 +8,10 @@ module.exports = function(app) {
   });
 
   app.get("/results", function(req, res) {
-    res.sendFile(path.join(__dirname, "../public/results.html"));
+    db.centers.findAll().then(function(result){
+      res.send({data: result});
+    });
+    //res.sendFile(path.join(__dirname, "../public/results.html"));
   });
 
   // If no matching route is found default to home
