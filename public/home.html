@@ -37,17 +37,22 @@
   		<form>
   			<div class="form-row col-md-12">
   				<div class="col-md-5">
-  					<input type="input" class="form-control form-control-md" placeholder="Enter your zip code...">
+  					<input type="input" id="zipcode-search" class="form-control form-control-md" placeholder="Enter your zip code...">
   				</div>
           <div class="col-md-5">
             <input type="input" class="form-control form-control-md" placeholder="Enter your child's age...">
           </div>
   				<div class="row-eq-height col-md-2">
-  					<button type="submit" id="zipcode-form" class="btn btn-block btn-md btn-primary" style="background-color:#EB6864;border-color:#EB6864">Search!</button>
+  					<input type="submit" value="Search!" id="search-btn" class="btn btn-block btn-md btn-primary" style="background-color:#EB6864;border-color:#EB6864">
   				</div>
   			</div>
   		</form>
 	</div>
+              <!-- Results -->
+              <div class="panel-body">
+              <div class="well" id="stats" hidden="true">
+              </div>
+            </div>
 	<!-- Icons Grid -->
     <div class="features-icons bg-light text-center">
       <div class="container">
@@ -132,7 +137,7 @@
   		      <form>
         <div class="form-row col-md-12">
           <div class="col-md-5">
-            <input type="input" class="form-control form-control-md" placeholder="Enter your zip code...">
+            <input type="input" id="zipcode" class="form-control form-control-md" placeholder="Enter your zip code...">
           </div>
           <div class="col-md-5">
             <input type="input" class="form-control form-control-md" placeholder="Enter your child's age...">
@@ -154,6 +159,8 @@
     </footer>
 <!-- Custom Script -->
   <script src="js/view.js" type="text/javascript"></script>
+  <!-- <script async defer 
+          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBMDVtvgp2uIUnjYa5jbrbxMemEqCVOx4c&callback=initMap"></script> -->
 
 </body>
 </html>
