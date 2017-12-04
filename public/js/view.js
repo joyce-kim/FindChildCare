@@ -1,5 +1,6 @@
 var map;
 
+
 // When user hits the search-btn
 $("#search-btn").on("click", function(event) {
   event.preventDefault();
@@ -16,6 +17,7 @@ $("#search-btn").on("click", function(event) {
     console.log(a);
     console.log(data);
     renderCenters(data);
+
   });
 
 });
@@ -38,8 +40,23 @@ function renderCenters(data) {
       div.append("<button class='delete' data-id='" + data[i].EMAIL + "'>SEND EMAIL</button>");
      
       $("#stats").append(div);
+
     }
 
   }
 }
+
+function initMap() {
+                      
+    var uluru = {lat: 38.94284836, lng: -76.99696369};
+    var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 12,
+    center: uluru
+    });
+    var marker = new google.maps.Marker({
+    position: uluru,
+    map: map
+    });
+};
+            
 
