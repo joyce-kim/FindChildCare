@@ -1,5 +1,16 @@
 var map;
 
+  function populateMarkers(results) {
+    for (var i = 0; i < results.length; i++) {
+      var lng = results[i].X;
+      var lat = results[i].Y;
+      var latLng = new google.maps.LatLng(lat,lng);
+      var marker = new google.maps.Marker({
+        position: latLng,
+        map: map
+      });
+    }
+  }
 
 // When user hits the search-btn
 $("#search-btn").on("click", function(event) {
@@ -17,6 +28,7 @@ $("#search-btn").on("click", function(event) {
     console.log(a);
     console.log(data);
     renderCenters(data);
+    populateMarkers(data);
 
   });
 
@@ -48,15 +60,18 @@ function renderCenters(data) {
 
 function initMap() {
                       
-    var uluru = {lat: 38.94284836, lng: -76.99696369};
-    var map = new google.maps.Map(document.getElementById('map'), {
+    // var uluru = {lat: 38.94284836, lng: -76.99696369};
+    map = new google.maps.Map(document.getElementById('map'), {
     zoom: 12,
-    center: uluru
+    center: new google.maps.LatLng(38.94284836,-76.99696369),
+    mapTypeID: 'terrain'
     });
-    var marker = new google.maps.Marker({
-    position: uluru,
-    map: map
-    });
-};
+    
+
+  };
+    
+
+
+
             
 
