@@ -1,14 +1,33 @@
 var map;
+var markers = [];
+
 
   function populateMarkers(results) {
     for (var i = 0; i < results.length; i++) {
       var lng = results[i].X;
       var lat = results[i].Y;
+      var name = results[i].NAME;
       var latLng = new google.maps.LatLng(lat,lng);
       var marker = new google.maps.Marker({
         position: latLng,
         map: map
       });
+       markers.push(marker);
+
+       map.setCenter({
+        lng: parseFloat(results[1].X),
+        lat: parseFloat(results[1].Y)
+      });
+      console.log(name);
+      
+      var infowindow = new google.maps.InfoWindow()
+      google.maps.event.addListener(marker,'click', (function(marker,name,infowindow){ 
+      return function() {
+        infowindow.setContent(name);
+        infowindow.open(map,marker);
+    };
+})(marker,name,infowindow));
+
     }
   }
 
@@ -28,7 +47,9 @@ $("#search-btn").on("click", function(event) {
     console.log(a);
     console.log(data);
     renderCenters(data);
+    clearMarkers();
     populateMarkers(data);
+
 
   });
 
@@ -56,6 +77,16 @@ function renderCenters(data) {
     }
 
   }
+}
+
+function setMapOnAll(map) {
+  for (var i = 0; i < markers.length; i++) {
+    markers[i].setMap(map);
+  }
+}
+
+function clearMarkers() {
+  setMapOnAll(null);
 }
 
 function initMap() {
