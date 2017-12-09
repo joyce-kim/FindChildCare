@@ -70,7 +70,7 @@ function renderCenters(data) {
       div.append("<p>POC: " + data[i].POC + "</p>");
       div.append("<p>Phone: " + data[i].PHONE + "</p>");
       div.append("<p>Tier: " + data[i].TIER_NAME + "</p>");
-      div.append("<button class='delete' data-id='" + data[i].EMAIL + "'>SEND EMAIL</button>");
+      div.append("<button id='email-button" + i + "' type='button' data-toggle='modal' data-target='#emailModal' class='email-buttons delete btn' data-email='" + data[i].EMAIL + "' data-name='" + data[i].NAME + "' data-poc='" + data[i].POC + "'>SEND EMAIL</button>");
      
       $("#stats").append(div);
 

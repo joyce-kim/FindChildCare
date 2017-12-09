@@ -16,10 +16,6 @@ var server =  email.server.connect({
   ssl:      true
 });
 
-// !!!!!! Need to get unique center info !!!!!! //
-var centerName = "Children Center of DC";
-var centerEmail = "jckim94@gmail.com";
-
 module.exports = function(app){
 
   //Get All Centers
@@ -60,14 +56,18 @@ module.exports = function(app){
     var userPhone = req.body.userPhone;
     var userEmail = req.body.userEmail;
     var userChild = req.body.userChild;
+    var centerName = req.body.centerName;
+    var centerEmail = req.body.centerEmail;
+    var centerPOC = req.body.centerPOC;
 
     var messageToCenter  = {
       from:  hostName + " <" + hostEmail + ">", 
-      to:    centerName + " <" + centerEmail + ">",
+      // to:    centerPOC + " <" + centerEmail + ">",
+      to: "jckim94@gmail.com",
       subject: "Admittance Request",
       attachment: 
       [
-        {data:"<html><h1>To whom it may concern at " + centerName + ",</h1><p>A parent is in need of your assistance. Please contact the following parent/guardian in regards to having their child admitted into your center.</p><ul><li>Parent's Name: " + userName + "</li><li>Child's Age: " + userChild + "</li><li>Parent Phone: " + userPhone + "</li><li>Parent Email: " + userEmail +"</li></ul><p>Many thanks,<br>PS202</html>", alternative:true}
+        {data:"<html><h1>To " + centerPOC + " at " + centerName + ",</h1><p>A parent is in need of your assistance. Please contact the following parent/guardian in regards to having their child admitted into your center.</p><ul><li>Parent's Name: " + userName + "</li><li>Child's Age: " + userChild + "</li><li>Parent Phone: " + userPhone + "</li><li>Parent Email: " + userEmail +"</li></ul><p>Many thanks,<br>PS202</html>", alternative:true}
       ]
     };
 
@@ -77,12 +77,12 @@ module.exports = function(app){
        subject: "PS202 Submit Receipt",
        attachment: 
        [
-          {data:"<html><h1>Hi " + userName + ",</h1><p>Your information has been sent to " + centerName + ". Please await contact from the center via email or phone.<br><br>Best wishes,<br>PS202</p></html>", alternative:true}
+          {data:"<html><h1>Hi " + userName + ",</h1><p>Your information has been sent to " + centerPOC + " at " + centerName + " (" + centerEmail + "). Please await contact from the center via email or phone.<br><br>Best wishes,<br>PS202</p></html>", alternative:true}
        ]
     };
 
 
-    server.send(messageToCenter, function(err, message) { console.log(err || message); });
+    // server.send(messageToCenter, function(err, message) { console.log(err || message); });
     server.send(messageToUser, function(err, message) { console.log(err || message); });
     res.json(true);
   });
