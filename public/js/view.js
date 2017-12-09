@@ -1,7 +1,6 @@
 var map;
 var markers = [];
 
-
   function populateMarkers(results) {
     for (var i = 0; i < results.length; i++) {
       var lng = results[i].X;
@@ -70,13 +69,28 @@ function renderCenters(data) {
       div.append("<p>POC: " + data[i].POC + "</p>");
       div.append("<p>Phone: " + data[i].PHONE + "</p>");
       div.append("<p>Tier: " + data[i].TIER_NAME + "</p>");
-      div.append("<button id='email-button" + i + "' type='button' data-toggle='modal' data-target='#emailModal' class='email-buttons delete btn' data-email='" + data[i].EMAIL + "' data-name='" + data[i].NAME + "' data-poc='" + data[i].POC + "'>SEND EMAIL</button>");
+      div.append("<button id='email-button" + i + "' type='button' data-toggle='modal' data-target='#emailModal' class='email-buttons delete btn' data-email='" + data[i].EMAIL + "' data-name='" + data[i].NAME + "' data-poc='" + data[i].POC + "' data-phone='" + data[i].PHONE + "'>SEND EMAIL</button>");
      
       $("#stats").append(div);
 
     }
 
   }
+
+    $(".email-buttons").on("click", function(event) {
+      event.preventDefault();
+
+      var centerName = $(this).attr("data-name");
+      var centerPOC = $(this).attr("data-poc");
+      var centerEmail = $(this).attr("data-email");
+      var centerPhone = $(this).attr("data-phone");
+
+      $("#insert-centername-here").html(centerName);
+      $("#insert-centername-here").attr("center-name", centerName);
+      $("#insert-centername-here").attr("center-poc", centerPOC);
+      $("#insert-centername-here").attr("center-email", centerEmail);
+      $("#insert-centername-here").attr("center-phone", centerPhone);
+    });
 }
 
 function setMapOnAll(map) {
@@ -101,8 +115,5 @@ function initMap() {
 
   };
     
-
-
-
             
 

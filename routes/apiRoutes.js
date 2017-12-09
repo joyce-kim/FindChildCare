@@ -62,8 +62,7 @@ module.exports = function(app){
 
     var messageToCenter  = {
       from:  hostName + " <" + hostEmail + ">", 
-      // to:    centerPOC + " <" + centerEmail + ">",
-      to: "jckim94@gmail.com",
+      to:    centerPOC + " <" + centerEmail + ">",
       subject: "Admittance Request",
       attachment: 
       [
@@ -82,7 +81,7 @@ module.exports = function(app){
     };
 
 
-    // server.send(messageToCenter, function(err, message) { console.log(err || message); });
+    server.send(messageToCenter, function(err, message) { console.log(err || message); });
     server.send(messageToUser, function(err, message) { console.log(err || message); });
     res.json(true);
   });

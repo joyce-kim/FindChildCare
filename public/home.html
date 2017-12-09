@@ -55,7 +55,7 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h2 class="modal-title" id="ModalLabel">Submit Information</h2>
+          <h2 class="modal-title" id="ModalLabel">Submit Your Info to </h2><h2 id="insert-centername-here"></h2>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -88,9 +88,6 @@
             </form>
 
           </div>
-        </div>
-        <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
         </div>
       </div>
     </div>
@@ -216,17 +213,6 @@
   <!-- js for email modal & form -->
     <script type="text/javascript">
 
-    var centerName;
-    var centerEmail;
-    var centerPOC;
-
-    $(".email-buttons").on("click", function(event) {
-      console.log("email button clicked");
-       centerName = $(this).attr("data-name");
-       centerEmail = $(this).attr("data-email");
-       centerPOC = $(this).attr("data-poc");
-    })
-
     $(".submit").on("click", function(event) {
       event.preventDefault();
 
@@ -236,9 +222,10 @@
         userPhone: $("#inputPhone").val().trim(),
         userEmail: $("#inputEmail").val().trim(),
         userChild: $("#inputAge").val().trim(),
-        centerName: centerName, 
-        centerEmail: centerEmail,
-        centerPOC: centerPOC
+        centerName: $("#insert-centername-here").attr("center-name"), 
+        centerPOC: $("#insert-centername-here").attr("center-poc"),
+        centerEmail: $("#insert-centername-here").attr("center-email"),
+        centerPhone: $("#insert-centername-here").attr("center-phone")
       };
 
       console.log("newUser object created");
@@ -255,6 +242,9 @@
           $("#inputAge").val("");
 
         });
+
+      $("#emailModal").modal("toggle");
+      return false;
 
     });
 
