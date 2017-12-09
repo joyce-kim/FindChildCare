@@ -19,4 +19,9 @@ module.exports = function(app) {
   // app.get("*", function(req, res) {
   //   res.sendFile(path.join(__dirname, "../public/home.html"));
   // });
+
+  // Get form page
+  app.get("/form", function(req, res) {
+    res.sendFile(path.join(__dirname, "../public/form.html"));
+  });
 };
