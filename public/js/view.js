@@ -6,7 +6,12 @@ var markers = [];
     for (var i = 0; i < results.length; i++) {
       var lng = results[i].X;
       var lat = results[i].Y;
-      var name = results[i].NAME;
+      var name = '<h4>' + results[i].NAME +'</h4>'+
+                '<p>' + results[i].ADDRESS + '</p>' +
+                "<p>POC: " + results[i].POC + "</p>"+
+                "<p>" + results[i].PHONE + "</p>" +
+                "<p>Tier: " + results[i].TIER_NAME + "</p>" +
+                "<button class='delete' data-id='" + results[i].EMAIL + "'>SEND EMAIL</button>"
       var latLng = new google.maps.LatLng(lat,lng);
       var marker = new google.maps.Marker({
         position: latLng,
@@ -46,7 +51,7 @@ $("#search-btn").on("click", function(event) {
     a.push(data);
     console.log(a);
     console.log(data);
-    renderCenters(data);
+    //renderCenters(data);
     clearMarkers();
     populateMarkers(data);
 
