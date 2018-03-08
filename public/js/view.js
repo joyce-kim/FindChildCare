@@ -10,7 +10,8 @@ var markers = [];
                 "<p>POC: " + results[i].POC + "</p>"+
                 "<p>" + results[i].PHONE + "</p>" +
                 "<p>Tier: " + results[i].TIER_NAME + "</p>" +
-                "<button class='delete' data-id='" + results[i].EMAIL + "'>SEND EMAIL</button>"
+                // "<button class='delete' data-id='" + results[i].EMAIL + "'>SEND EMAIL</button>"
+                "<button type='button' data-toggle='modal' data-target='#emailModal' class='email-buttons delete btn' data-email='" + results[i].EMAIL + "' data-name='" + results[i].NAME + "' data-poc='" + results[i].POC + "' data-phone='" + results[i].PHONE + "'>SEND EMAIL</button>";
       var latLng = new google.maps.LatLng(lat,lng);
       var marker = new google.maps.Marker({
         position: latLng,
@@ -33,6 +34,24 @@ var markers = [];
 })(marker,name,infowindow));
 
     }
+
+    // connecting unique center information to modal WHERE DO I PUT THIS
+    $(".email-buttons").on("click", function(event) {
+      event.preventDefault();
+
+      console.log("email button clicked");
+
+      var centerName = $(this).attr("data-name");
+      var centerPOC = $(this).attr("data-poc");
+      var centerEmail = $(this).attr("data-email");
+      var centerPhone = $(this).attr("data-phone");
+
+      $("#insert-centername-here").html(centerName);
+      $("#insert-centername-here").attr("center-name", centerName);
+      $("#insert-centername-here").attr("center-poc", centerPOC);
+      $("#insert-centername-here").attr("center-email", centerEmail);
+      $("#insert-centername-here").attr("center-phone", centerPhone);
+    });
   }
 
 // When user hits the search-btn
